@@ -30,69 +30,69 @@ class OutputTest extends TestCase
         self::assertFileExists($path);
     }
 
-    public function provideFormats()
+    public static function provideFormats()
     {
         return [
             'QR Platba (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba.png',
-                'qrPlatba' => $this->givenQrPlatbaObject(),
+                'qrPlatba' => self::givenQrPlatbaObject(),
             ],
             'QR Platba v EUR (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba_eur.png',
-                'qrPlatba' => $this->givenQrPlatbaObject()->setCurrency('EUR'),
+                'qrPlatba' => self::givenQrPlatbaObject()->setCurrency('EUR'),
             ],
             'QR Platba (SVG)' => [
                 'format' => QRPlatba::FORMAT_SVG,
                 'fileName' => 'qr_platba.svg',
-                'qrPlatba' => $this->givenQrPlatbaObject(),
+                'qrPlatba' => self::givenQrPlatbaObject(),
             ],
             'QR Platba a popisek (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba_popisek.png',
-                'qrPlatba' => $this->givenQrPlatbaObject()->setLabel('QR Platba'),
+                'qrPlatba' => self::givenQrPlatbaObject()->setLabel('QR Platba'),
             ],
             'QR Platba a popisek v EUR (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba_popisek_eur.png',
-                'qrPlatba' => $this->givenQrPlatbaObject()->setCurrency('EUR')->setLabel('QR Platba v EUR'),
+                'qrPlatba' => self::givenQrPlatbaObject()->setCurrency('EUR')->setLabel('QR Platba v EUR'),
             ],
             'QR Platba a popisek (SVG)' => [
                 'format' => QRPlatba::FORMAT_SVG,
                 'fileName' => 'qr_platba_popisek.svg',
-                'qrPlatba' => $this->givenQrPlatbaObject()->setLabel('QR Platba'),
+                'qrPlatba' => self::givenQrPlatbaObject()->setLabel('QR Platba'),
             ],
             'QR Platba+F a popisek (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba_a_faktura_popisek.png',
-                'qrPlatba' => $this->givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F'),
+                'qrPlatba' => self::givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F'),
             ],
             'QR Platba+F a popisek v EUR (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_platba_a_faktura_popisek_eur.png',
-                'qrPlatba' => $this->givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F')->setCurrency('EUR'),
+                'qrPlatba' => self::givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F')->setCurrency('EUR'),
             ],
             'QR Platba+F a popisek (SVG)' => [
                 'format' => QRPlatba::FORMAT_SVG,
                 'fileName' => 'qr_platba_a_faktura_popisek.svg',
-                'qrPlatba' => $this->givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F'),
+                'qrPlatba' => self::givenQrPlatbaWithInvoiceObject()->setLabel('QR Platba+F'),
             ],
             'QR Faktura (PNG)' => [
                 'format' => QRPlatba::FORMAT_PNG,
                 'fileName' => 'qr_faktura.png',
-                'qrPlatba' => $this->givenQrPlatbaWithInvoiceObject()->setIsOnlyInvoice(true)->setLabel('QR Faktura (bez platby)'),
+                'qrPlatba' => self::givenQrPlatbaWithInvoiceObject()->setIsOnlyInvoice(true)->setLabel('QR Faktura (bez platby)'),
             ],
         ];
     }
 
-    private function givenQrPlatbaObject(): QRPlatba
+    private static function givenQrPlatbaObject(): QRPlatba
     {
         return QRPlatba::create('1234/0100', 123.45, '1234567890')
             ->setMessage('Předplatné FlixNet');
     }
 
-    private function givenQrPlatbaWithInvoiceObject(): QRPlatba
+    private static function givenQrPlatbaWithInvoiceObject(): QRPlatba
     {
         return QRPlatba::create('1234/0100', 2410.00, '1234567890')
             ->setInvoiceId('FAKT1234')

@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": ">=7.4.0",
-        "endroid/qr-code": "^4",
-        "jschaedl/iban-validation": "^1.4",
+        "php": ">=8.2",
+        "endroid/qr-code": "^6.0.3",
+        "jschaedl/iban-validation": "^v2.5.1",
         "ext-mbstring": "*"
     },
     "autoload": {
